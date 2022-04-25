@@ -1,6 +1,5 @@
 # SENG-LIVE-042522
 
-# SENG-LIVE-013122 Phase 1
 
 ## How to use this repository
 

@@ -176,3 +176,7 @@ if(true == true) {
 
 
 ```
+![scope](assets/scope.png)
+![scope](assets/scope2.png)
+
+note: var ignores this scoping rule, which is why we avoid using it.

@@ -21,6 +21,9 @@ header div h2{
     font-style: italic;
 
 }
+footer h5{
+    text-align: center;
+}
 
 .list ul{
     display: flex;

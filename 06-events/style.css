@@ -61,6 +61,15 @@ main {
     font-size: large;
     font-weight: bold;
 }
+.book-inventory-form{
+    width: 100%;
+}
+
+.book-inventory-form input{
+    height: 30px;
+    width: 100%;
+    margin: 3px;
+}
 
 #form-wrapper{
     border-top: solid;

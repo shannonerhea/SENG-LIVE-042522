@@ -10,14 +10,29 @@
 
 // runs JavaScript functions after DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // function calls
-    console.log('second')
-    document.querySelector('#book-list li').remove()
-    renderHeader(bookStore)
-    renderInventory(bookStore.inventory, renderOneBook)
-    renderFooter(bookStore)
-    handleSearch()
+    // GET Fetch 
+    // Fetch one store
+    fetch('http://localhost:3000/store_info/1')
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        let h1 =  document.querySelector('header h1')
+        h1.textContent = data.name
+        // renderHeader(data)
+        // renderFooter(data)
+    })
 
+    console.log(document.querySelector('#open-library-search-form #submit'))
+
+
+    //Make a Fetch to get our inventory 
+    //http://localhost:3000/inventory
+    fetch('http://localhost:3000/inventory')
+    .then(res => res.json())
+    .then(data =>  renderInventory(data, renderOneBook))
+
+
+    document.querySelector('#book-list li').remove()
     document.getElementById('book-form').addEventListener('submit', (e) => {
         e.preventDefault()
         const book = {

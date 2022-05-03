@@ -1,8 +1,12 @@
-// bookStore is coming from data.js
 //Deliverables
-//1. Move function calls to DOMContentLoaded
-//2. Create a delete button element for each card
-//3. Create a form that submits a new book
+//1. Remove bookStore data from data.js
+//2. Retrieve data from REST API json-server 
+//     - Make a GET request to json-server
+//     - Handle promise, convert response with .json  
+//     - render data
+//3. Stretch Goal - Make a request to an external API
+
+
 
 // runs JavaScript functions after DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
@@ -14,13 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
     renderFooter(bookStore)
     handleSearch()
 
-    // document.querySelector('header').addEventListener('click', ()=>{
-    //     console.log('hi')
-    // })
     document.getElementById('book-form').addEventListener('submit', (e) => {
         e.preventDefault()
-        // console.log(e.target['form-title'].value)
-        // console.log(e.target[0].value)
         const book = {
             title: e.target.title.value,
             author: e.target.author.value,
@@ -31,11 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         renderOneBook(book)
         e.target.reset()
-        //document.querySelector('#book-form').reset()
     })
 })
 
-console.log('first')
 
 
 //Selecting and updating elements

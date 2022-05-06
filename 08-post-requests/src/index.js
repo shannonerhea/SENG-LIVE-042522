@@ -1,14 +1,6 @@
-//Deliverables
-//1. Remove bookStore data from data.js
-//2. Retrieve data from REST API json-server 
-//     - Make a GET request to json-server
-//     - Handle promise, convert response with .json  
-//     - render data
-//3. Stretch Goal - Make a request to an external API
+//1. On submit, data should be sent to our server and create a new resource.
+//2. When the resource is returned from the server, it should be rendered to the client. 
 
-
-
-// runs JavaScript functions after DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     // GET Fetch 
     // Fetch one store

@@ -25,7 +25,9 @@
         </div>
       </header>
       <main>
-        <form id="book-form">
+        <button id="form-toggle">Toggle To Store Form</button>
+
+        <form id="book-form" >
           <div>
           <label for="title">Title:</label><br>
           <input type="text" id="form-title" name="title"><br>
@@ -46,8 +48,32 @@
             <label for="inventory">Inventory:</label><br>
             <input type="text" id="inventory" name="inventory">
             </div>
-
           <input type="submit" value="ADD BOOK"/>
+        </form>
+
+
+        <form id="location-form" class="hidden">
+          <div>
+          <label for="location">Location:</label><br>
+          <input type="text" id="form-location" name="location"><br>
+          </div>
+          <div>
+          <label for="address">Address:</label><br>
+          <input type="text" id="form-address" name="address">
+          </div>
+          <div>
+          <label for="number">Number:</label><br>
+          <input type="number" id="form-number" name="number">
+          </div>
+          <div>
+          <label for="name">Store Name:</label><br>
+          <input type="text" id="form-name" name="name">
+          </div>
+          <div>
+            <label for="hours">Hours:</label><br>
+            <input type="text" id="form-hours" name="hours">
+            </div>
+          <input type="submit" value="ADD STORE"/>
         </form>
         
         

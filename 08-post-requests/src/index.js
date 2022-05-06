@@ -7,14 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch('http://localhost:3000/store_info/1')
     .then(res => res.json())
     .then(data => {
-        console.log(data)
-        let h1 =  document.querySelector('header h1')
-        h1.textContent = data.name
-        // renderHeader(data)
-        // renderFooter(data)
+        renderHeader(data)
+        renderFooter(data)
     })
 
-    console.log(document.querySelector('#open-library-search-form #submit'))
 
 
     //Make a Fetch to get our inventory 
@@ -35,11 +31,42 @@ document.addEventListener('DOMContentLoaded', () => {
             inventory: parseInt(e.target.inventory.value),
             imageUrl: e.target.imageUrl.value
         }
-        renderOneBook(book)
+        postContent(book, 'inventory')
+        .then(data => renderOneBook(data))
         e.target.reset()
+    })
+    document.querySelector('#location-form').addEventListener('submit',(e)=> {
+        e.preventDefault()
+        const location = {
+            location: e.target.location.value,
+            address: e.target.address.value,
+            number: e.target.number.value,
+            name: e.target.name.value,
+            hours: e.target.hours.value
+        }
+        postContent(location, 'store_info')
+        .then(data => console.log(data))
+    })
+
+
+    document.querySelector('#form-toggle').addEventListener('click',(e)=>{
+       document.querySelector('#book-form').classList.toggle('hidden')
+       document.querySelector('#location-form').classList.toggle('hidden')
+       e.target.textContent === 'Toggle To Store Form'? e.target.textContent = 'Toggle To Book Form':e.target.textContent = 'Toggle To Store Form'
     })
 })
 
+//Fetch calls 
+const postContent = (obj, endpoint) => {
+    return fetch(`http://localhost:3000/${endpoint}`,{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(obj)
+    })
+    .then(res => res.json())
+}
 
 
 //Selecting and updating elements

@@ -71,6 +71,9 @@ main {
     margin: 3px;
 }
 
+.hidden{
+    display:none;
+}
 #form-wrapper{
     border-top: solid;
     border-bottom: solid;

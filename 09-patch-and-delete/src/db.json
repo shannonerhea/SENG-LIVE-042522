@@ -15,6 +15,14 @@
       "number": 9999999999,
       "name": "Bob's Technical Books",
       "hours": "Monday - Friday 9am - 6pm"
+    },
+    {
+      "location": "sadf",
+      "address": "sdaf",
+      "number": "343",
+      "name": "dsfs",
+      "hours": "dsfds",
+      "id": 3
     }
   ],
   "inventory": [
@@ -29,7 +37,7 @@
           "content": "Good book, but not great for new coders"
         }
       ],
-      "inventory": 10,
+      "inventory": 10000,
       "imageUrl": "https://images-na.ssl-images-amazon.com/images/I/51IKycqTPUL._SX218_BO1,204,203,200_QL40_FMwebp_.jpg"
     },
     {
@@ -136,24 +144,6 @@
       "inventory": null,
       "imageUrl": "https://learning.oreilly.com/library/cover/9781449390211/250w/",
       "id": 8
-    },
-    {
-      "title": "JavaScript Cookbook",
-      "author": "Shelly Powers",
-      "price": 32,
-      "reviews": [],
-      "inventory": 5,
-      "imageUrl": "https://learning.oreilly.com/library/cover/9781449390211/250w/",
-      "id": 9
-    },
-    {
-      "title": "JavaScript cookbook",
-      "author": "shelly powers",
-      "price": 32,
-      "reviews": [],
-      "inventory": 10,
-      "imageUrl": "    https://learning.oreilly.com/library/cover/9781449390211/250w/",
-      "id": 10
     }
   ],
   "cats": []

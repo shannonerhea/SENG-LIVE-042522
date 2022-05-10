@@ -6,14 +6,33 @@
 //4. Stretch async and await 
 //5. Stretch .catch
 document.addEventListener('DOMContentLoaded', () => {
+    const handleErrors = (errors) => console.log('errors', errors)
     // GET Fetch 
     // Fetch one store
-    fetch('http://localhost:3000/store_info/1')
-    .then(res => res.json())
-    .then(data => {
-        renderHeader(data)
-        renderFooter(data)
-    })
+//     fetch('http://localhost:3000/store_info/1')
+//     .then(res => {
+//         if(res.ok) {
+//             return res.json()
+//                 .then(data => {
+//                 console.log('hi things are ok')
+//                 renderHeader(data)
+//                 renderFooter(data)
+//             })
+//     } else {
+//         console.log('error', res.statusText)
+//     }
+// })
+//     .catch(handleErrors)
+
+    console.log(fetch('http://localhost:3000/store_info/1'))
+
+
+  const fetchStore = async () => {
+    const res = await fetch('http://localhost:3000/store_info/1')
+    const data = await res.json()
+    console.log(data)
+  }  
+  fetchStore()
 
 
 
@@ -39,6 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
         .then(data => renderOneBook(data))
         e.target.reset()
     })
+    //When to make a POST?
+    //Where does the POST go?
+    //What do you do when submit happens
+    // get the data from the form
+    // send that data to the server (POST)
+    // update the dom
     document.querySelector('#location-form').addEventListener('submit',(e)=> {
         e.preventDefault()
         const location = {
@@ -71,6 +96,8 @@ const postContent = (obj, endpoint) => {
     })
     .then(res => res.json())
 }
+
+
 
 
 //Selecting and updating elements
@@ -108,14 +135,36 @@ const postContent = (obj, endpoint) => {
         miniSubmit.type = 'submit'
         card.className = 'list-li'
 
-        btn.addEventListener('click',() => card.remove())
+        btn.addEventListener('click',() => {
+            // card.remove()
+            fetch(`http://localhost:3000/inventory/${item.id}`,{
+                method:'DELETE',
+                headers: {
+                    'Content-Type':'application/json'
+                }
+            })
+            .then(() => {
+                card.remove()
+            })
+        })
 
         miniForm.addEventListener('submit', (e) => {
             e.preventDefault()
             //console.log(e.target[0].value)
             item.inventory += parseInt(e.target.inventory.value)
-            inventory.textContent = `Inventory: ${item.inventory}`
+            // inventory.textContent = `Inventory: ${item.inventory}`
 
+            fetch(`http://localhost:3000/inventory/${item.id}`,{
+                method: 'PATCH',
+                headers: {
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify({inventory:item.inventory})
+            })
+            .then(res => res.json())
+            .then(data => {
+                inventory.textContent = `Inventory: ${data.inventory}`
+            })
         })
 
         miniForm.append(miniInput, miniSubmit)

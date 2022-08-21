@@ -4,107 +4,178 @@
 //2. Create a delete button element for each card
 //3. Create a form that submits a new book
 
-// runs JavaScript functions after DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    // function calls
-    console.log('second')
-    document.querySelector('#book-list li').remove()
-    renderHeader(bookStore)
+//run js functions after DOM is loaded
+document.addEventListener('DOMContentLoaded', () =>{
+    //console.log("The DOM is loaded")
+    document.querySelector('#book-list li').remove() // this removed the sample li element
+    renderHeadrer(bookStore)
     renderInventory(bookStore.inventory, renderOneBook)
     renderFooter(bookStore)
-
-    // document.querySelector('header').addEventListener('click', ()=>{
-    //     console.log('hi')
-    // })
-    document.getElementById('book-form').addEventListener('submit', (e) => {
-        e.preventDefault()
-        // console.log(e.target['form-title'].value)
-        // console.log(e.target[0].value)
-        const book = {
-            title: e.target.title.value,
-            author: e.target.author.value,
-            price: parseInt(e.target.price.value),
-            reviews: [],
-            inventory: parseInt(e.target.inventory.value),
-            imageUrl: e.target.imageUrl.value
-        }
-        renderOneBook(book)
-        e.target.reset()
-        //document.querySelector('#book-form').reset()
-    })
 })
 
-console.log('first')
+
+//building out the headrer on the page
+// make sure you call this 
+const renderHeadrer = (store) => {
+    const h1 = document.querySelector('header h1') // selects the h1 we want in the ('header div h1)'
+    h1.textContent = store.name // this puts the store name in the h1 tag on the page
+    //console.log(h1)
+    
+};
+
+
+//****adding/creating elements to the DOM*********** */..i need to add li h3 p p img
+const renderOneBook = ((book) => {
+    const card = document.createElement('li') //building container card
+        const title = document.createElement('h3') // building h3 and so on below
+        const author = document.createElement('p')  
+        const price = document.createElement('p')
+        const img = document.createElement('img')
+        //adding content to elements below
+        title.textContent = book.title // adding content to the elements i built above
+        author.textContent = book.author
+        price.textContent = `$${book.price}`
+        img.src = book.imageUrl
+
+        card.className = 'list-li' // ref to CSS styling in CSS file
+        card.append(title, author, price, img) // this adds my elements to the container (card/ container)
+        //console.log(card)
+        document.querySelector('#book-list').append(card) // added the container/card to the DOM
+    });
+
+
+//****rendering out books*********** */
+const renderInventory = (inventory, renderBook) => { // second parameter can be any name that makes sense its a cb
+    inventory.forEach(renderBook)
+}
+
+//building out the footer on the page
+//selectAll cuz there are 3 H5's im gonna use them all below
+//make sure to call this with my other calls ata the bottom of my code 
+const renderFooter = (store) => {
+    const footerH5 = document.querySelectorAll('footer h5')
+
+    footerH5[0].textContent = store.name // textContent is an atribute that changes the text of the footer 
+    footerH5[1].textContent = store.number
+    footerH5[2].textContent = store.hours
+    footerH5[3].textContent = `${store.name} .copyright 2022`
+    //console.log(footerH5)
+
+};
+
+
+// all my function calls (- moved these into my eventlistener in DOMContentLoaded)
+// _document.querySelector('#book-list li').remove() // this removed the sample li element
+// renderHeadrer(bookStore)
+// renderInventory(bookStore.inventory, renderOneBook)
+// renderFooter(bookStore)
+
+
+
+
+
+
+// runs JavaScript functions after DOM is loaded
+// document.addEventListener('DOMContentLoaded', () => {
+//     // function calls
+//     console.log('second')
+//     document.querySelector('#book-list li').remove()
+//     renderHeader(bookStore)
+//     renderInventory(bookStore.inventory, renderOneBook)
+//     renderFooter(bookStore)
+
+//     // document.querySelector('header').addEventListener('click', ()=>{
+//     //     console.log('hi')
+//     // })
+//     document.getElementById('book-form').addEventListener('submit', (e) => {
+//         e.preventDefault()
+//         // console.log(e.target['form-title'].value)
+//         // console.log(e.target[0].value)
+//         const book = {
+//             title: e.target.title.value,
+//             author: e.target.author.value,
+//             price: parseInt(e.target.price.value),
+//             reviews: [],
+//             inventory: parseInt(e.target.inventory.value),
+//             imageUrl: e.target.imageUrl.value
+//         }
+//         renderOneBook(book)
+//         e.target.reset()
+//         //document.querySelector('#book-form').reset()
+//     })
+// })
+
+// console.log('first')
 
 
 //Selecting and updating elements
     //Render Header
-    const renderHeader = (store) => document.querySelector('header h1').textContent = store.name
+   // const renderHeader = (store) => document.querySelector('header h1').textContent = store.name
 
   
 
 //Creating and appending elements
    //Render one book
-    const renderOneBook = (item) => {
-        const card = document.createElement('li')
-        const title = document.createElement('h3')
-        const subHeading = document.createElement('p')
-        const price = document.createElement('p')
-        const inventory = document.createElement('p')
-        const img = document.createElement('img')
-        const btn = document.createElement('button')
-        const miniForm = document.createElement('form')
-        const miniInput = document.createElement('input')
-        const miniSubmit = document.createElement('input')
+    // const renderOneBook = (item) => {
+    //     const card = document.createElement('li')
+    //     const title = document.createElement('h3')
+    //     const subHeading = document.createElement('p')
+    //     const price = document.createElement('p')
+    //    // const inventory = document.createElement('p')
+    //     const img = document.createElement('img')
+    //    // const btn = document.createElement('button')
+    //    // const miniForm = document.createElement('form')
+    //    // const miniInput = document.createElement('input')
+    //    // const miniSubmit = document.createElement('input')
 
 
-        title.textContent = item.title
-        subHeading.textContent = item.author
-        price.textContent = `$${item.price}`
-        inventory.textContent = `Inventory: ${item.inventory}`
-        btn.textContent = 'Delete' 
+    //     title.textContent = item.title
+    //     subHeading.textContent = item.author
+    //     price.textContent = `$${item.price}`
+    //    // inventory.textContent = `Inventory: ${item.inventory}`
+    //    // btn.textContent = 'Delete' 
         
-        img.src = item.imageUrl
-        miniForm.className = 'book-inventory-form'
-        miniInput.type = 'number'
-        miniInput.name = 'inventory'
-        // miniInput.value = item.inventory
-        miniSubmit.type = 'submit'
-        card.className = 'list-li'
+    //     img.src = item.imageUrl
+    //    // miniForm.className = 'book-inventory-form'
+    //    // miniInput.type = 'number'
+    //    // miniInput.name = 'inventory'
+    //     // miniInput.value = item.inventory
+    //    // miniSubmit.type = 'submit'
+    //     card.className = 'list-li'
 
-        btn.addEventListener('click',() => card.remove())
+    //    // btn.addEventListener('click',() => card.remove())
 
-        miniForm.addEventListener('submit', (e) => {
-            e.preventDefault()
-            //console.log(e.target[0].value)
-            item.inventory += parseInt(e.target.inventory.value)
-            inventory.textContent = `Inventory: ${item.inventory}`
+    //    // miniForm.addEventListener('submit', (e) => {
+    //     //    e.preventDefault()
+    //         //console.log(e.target[0].value)
+    //     //    item.inventory += parseInt(e.target.inventory.value)
+    //     //    inventory.textContent = `Inventory: ${item.inventory}`
 
-        })
+    //     })
 
-        miniForm.append(miniInput, miniSubmit)
-        card.append(title, subHeading, price, inventory, img, btn, miniForm)
-        document.querySelector('#book-list').append(card)
-    }
-    //Rendering out books
-    const renderInventory = (inventory, renderFoo) => {
-        inventory.forEach(renderFoo)
-    }
+    //    // miniForm.append(miniInput, miniSubmit)
+    //     card.append(title, subHeading, price, inventory, img, btn, miniForm)
+    //     document.querySelector('#book-list').append(card)
+    // }
+    // //Rendering out books
+    // const renderInventory = (inventory, renderFoo) => {
+    //     inventory.forEach(renderFoo)
+    // }
 
-    //Renders Footer
-    const renderFooter = (store) => {
-        const footerH5 = document.querySelectorAll("footer h5")
-        footerH5[0].textContent = store.name
-        footerH5[1].textContent = store.number
-        footerH5[2].textContent = store.hours
-        footerH5[3].textContent = `${store.name} .inc copyright 2022`
-    }
+    // //Renders Footer
+    // const renderFooter = (store) => {
+    //     const footerH5 = document.querySelectorAll("footer h5")
+    //     footerH5[0].textContent = store.name
+    //     footerH5[1].textContent = store.number
+    //     footerH5[2].textContent = store.hours
+    //     footerH5[3].textContent = `${store.name} .inc copyright 2022`
+    // }
 
 
     
 
 
-    const json = {
+   const json = {
         "abilities": [
         {
         "ability": {
@@ -1041,4 +1112,5 @@ console.log('first')
         "weight": 40
         }
 
-        console.log(JSON.parse(json))
+     //   console.log(JSON.parse(json))
+    

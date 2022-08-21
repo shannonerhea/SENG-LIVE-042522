@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () =>{
     document.querySelector('#book-list li').remove() // this removed the sample li element
     renderHeadrer(bookStore)
     renderInventory(bookStore.inventory, renderOneBook)
-    renderFooter(bookStore)
+    renderFooter(bookStore)    // moving these into the eventlisterner makes them laod right away
 })
 
 

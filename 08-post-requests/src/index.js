@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(data =>  renderInventory(data, renderOneBook))
 
 
-    document.querySelector('#book-list li').remove()
+    document.querySelector('#book-list li').remove() // removed sample card
     document.getElementById('book-form').addEventListener('submit', (e) => {
         e.preventDefault()
         const book = {

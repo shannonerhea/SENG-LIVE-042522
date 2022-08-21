@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', () =>{
     renderHeadrer(bookStore)
     renderInventory(bookStore.inventory, renderOneBook)
     renderFooter(bookStore)    // moving these into the eventlisterner makes them laod right away
+
+  
 })
 
 
@@ -19,9 +21,9 @@ document.addEventListener('DOMContentLoaded', () =>{
 const renderHeadrer = (store) => {
     const h1 = document.querySelector('header h1') // selects the h1 we want in the ('header div h1)'
     h1.textContent = store.name // this puts the store name in the h1 tag on the page
-    //console.log(h1)
-    
+    //console.log(h1) 
 };
+
 
 
 //****adding/creating elements to the DOM*********** */..i need to add li h3 p p img

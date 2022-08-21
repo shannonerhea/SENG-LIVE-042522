@@ -12,6 +12,23 @@ document.addEventListener('DOMContentLoaded', () =>{
     renderInventory(bookStore.inventory, renderOneBook)
     renderFooter(bookStore)    // moving these into the eventlisterner makes them laod right away
 
+    document.querySelector('#book-form').addEventListener('submit', (event) => {
+        event.preventDefault()
+        // event. target. name. or id. and .value
+        // this obj is the content of my form? idk 
+        const book = {
+            title: event.target.title.value,
+            author: event.target.author.value,
+            price: parseInt(event.target.price.value),
+            reviews: [],
+            inventory: parseInt(event.target.inventory.value),
+            imageUrl: event.target.imageUrl.value
+        };
+        renderOneBook(book)
+        event.target.reset() // also resets form 
+        ///document.querySelector('#book-form').reset()  //resets the form 
+    })
+
   
 })
 
@@ -33,14 +50,20 @@ const renderOneBook = ((book) => {
         const author = document.createElement('p')  
         const price = document.createElement('p')
         const img = document.createElement('img')
+        const btn = document.createElement('button')
         //adding content to elements below
         title.textContent = book.title // adding content to the elements i built above
         author.textContent = book.author
         price.textContent = `$${book.price}`
+        btn.textContent = "Delete"
         img.src = book.imageUrl
-
         card.className = 'list-li' // ref to CSS styling in CSS file
-        card.append(title, author, price, img) // this adds my elements to the container (card/ container)
+
+        btn.addEventListener('click', () => {
+            card.remove()
+        })
+
+        card.append(title, author, price, img, btn) // this adds my elements to the container (card/ container)
         //console.log(card)
         document.querySelector('#book-list').append(card) // added the container/card to the DOM
     });
@@ -71,6 +94,12 @@ const renderFooter = (store) => {
 // renderHeadrer(bookStore)
 // renderInventory(bookStore.inventory, renderOneBook)
 // renderFooter(bookStore)
+
+
+
+
+
+
 
 
 
